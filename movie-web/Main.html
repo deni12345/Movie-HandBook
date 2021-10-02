@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="StyleHeader.css">
+    <link rel="stylesheet" href="StyleSlide.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+</head>
+
+<body style=" margin: 0; padding: 0; background-color: #6e6e6e;">
+    <!-- This is the head of website ( header, NavMenu) -->
+    <!--Logo and searchbar-->
+    <div class="Header" class="clearfix">
+        <button type="button" id="Hamburger" onclick="DisplaySideNav()"> &#9776; </button>
+        <div id="Logo">
+            <p id="WebName">JACK-HAMMER</p>
+        </div>
+        <div id="SearchBar">
+            <form>
+                <button type="button" id="BtnSearch" onclick="ExpandSearchInput()"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
+                <div id="box"><input id="InputSearchText" type="text" class="HideInputSearch" /></div>
+            </form>
+        </div>
+    </div>
+    <!--Navigator-->
+    <div id="nav_menu" class="hide_sidenav">
+        <button class="BtnCloseNav" onclick="DisplaySideNav()"><a>&#10006;</a></button>
+        <button id="BtnHome" class="NavBtn"><a>HOME</a></button>
+        <button id="BtnCategory" class="NavBtn"><a>CATEGORY &nbsp;<i class="fas fa-caret-down"></i></a> 
+            <ul class="Sub" >
+                <li> <a href="">ITEM1</a></li>
+                <li> <a href="">ITEM2</a></li>
+                <li> <a href="">ITEM3</a></li>
+                <li> <a href="">ITEM4</a></li>
+            </ul>
+        </button>
+        <button id="BtnAbout" class="NavBtn"><a>ABOUT &nbsp;<i class="fas fa-caret-down"></i></i></a>
+            <ul class="Sub" class="NavBtn">
+                <li><a href="">ITEM1</a></li>
+                <li> <a href="">ITEM2</a></li>
+                <li> <a href="">ITEM3</a></li>
+                <li> <a href="">ITEM4</a></li>
+            </ul>
+        </button>
+        <button id="BtnChat" class="NavBtn"><a>CHAT</a></button>
+    </div>
+    <!-- This is the end head of website ( header, NavMenu) -->
+    <div id="container">
+        <!-- This is the slide image of website -->
+        <div class="slider">
+            <div class="imgs">
+                <!-- you can add divs with class img here and they will be 
+                   automatically added to slider -->
+                <!-- style="left: 0;" in case JS is disabled -->
+                <div class="img">
+                    <span><h2>1917</h2>
+                        During World War I, two British soldiers receive seemingly impossible orders. In a race against time,
+                        they must cross over into enemy territory to deliver a message that could potentially save 1,600 of their fellow comrades.
+                </div>
+                <div class="img">
+                    <span><h2>Game of Thrones</h2>
+                    Two powerful families kings and queens, knights and renegades, liars and honest men playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne.</span>
+                </div>
+                <div class="img">
+                    <span>Image 3</span>
+                </div>
+                <div class="img">
+                    <span>Image 4</span>
+                </div>
+            </div>
+            <div class="dots"></div>
+        </div>
+        <!-- This is the end of slide image of website -->
+        <!-- This is the grid containt main and side contents-->
+        <div id="grid-layout">
+            <main id="main" class="cell">
+                <div class="my-carousel">
+                    <ul id="movie-list">
+                        <li>
+                            <a href="#">
+                                <div class="movie-card">
+                                    <div class="img-wrapper">
+                                        <img src="Resource/MoviePoster/greenbook.jpg" class="movie-poster" width="200">
+                                    </div>
+                                    <h1 class="movie-title">Green Book</h1>
+                                    <p class="movie-rating">rating: 10/10</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/joker.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/johnwick.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/glass.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/deadpool.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/greenbook.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/johnwick.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/joker.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/deadpool.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/greenbook.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <section id="new-movie">
+                    <div class="section-title">New Movie</div>
+                    <ul id="movie-wrapper">
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/greenbook.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/joker.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/johnwick.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/glass.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/deadpool.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/greenbook.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/johnwick.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="Resource/MoviePoster/joker.jpg" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">Green Book</h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <aside id="side-content1 " class="cell ">
+                <div style="display: table-cell; height: 200px; width: 1%; border-radius: 5%; background-color: teal; opacity: 1; vertical-align: middle; justify-items: center;">
+                    <h1 style="color: white;">SIDE CONTENT 1</h1>
+                </div>
+            </aside>
+            <aside id="side-content2 " class="cell ">
+                <h1>SIDE CONTENT 2</h1>
+            </aside>
+        </div>
+    </div>
+    <!--This is the place where all the script was written-->
+    <script src="Slide.js "></script>
+    <script src="Main.js "></script>
+    <script src="ExpandSearch.js "></script>
+    <script src="https://kit.fontawesome.com/2f7f23d4ac.js " crossorigin="anonymous "></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $('#movie-list').slick({
+            accessibility: false,
+            prevArrow: false,
+            nextArrow: false,
+            infinite: false,
+            variableWidth: false,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            responsive: [{
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    variableWidth: false,
+                }
+
+            }]
+        });
+    </script>
+</body>
+
+</html>

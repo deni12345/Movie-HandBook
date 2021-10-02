@@ -1,0 +1,405 @@
+html,
+* {
+    font-size: 100%;
+    box-sizing: border-box
+}
+
+body,
+h1 {
+    font-family: Verdana, sans-serif;
+    margin: 0
+}
+
+ul {
+    text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+#container {
+    background-color: whitesmoke;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.Header {
+    position: relative;
+    background-color: #1A1A1D;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+#Logo {
+    margin-left: 20px;
+    overflow: hidden;
+    display: block;
+}
+
+#WebName {
+    color: whitesmoke;
+    font-size: 2vw;
+}
+
+#SearchBar {
+    position: absolute;
+    right: 0px;
+    font-size: 0px;
+    width: calc( 100% - 2rem);
+}
+
+.HideInputSearch {
+    padding: 6px 0px;
+    font-size: 20px;
+    width: 0px;
+    transition: width 1s ease-in-out;
+    border: none;
+}
+
+#InputSearchText {
+    float: right;
+    background-color: #1A1A1D;
+    color: whitesmoke;
+    outline: 0;
+    border: none;
+    border-bottom: 1px solid whitesmoke;
+}
+
+#box {
+    margin-left: 15px;
+    overflow: hidden;
+}
+
+.DisplayInputSearch {
+    width: 350px;
+    height: 100%;
+    padding: 6px;
+}
+
+#BtnSearch {
+    float: right;
+    margin-right: 5%;
+    background-color: #1A1A1D;
+    padding: 6px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#Hamburger {
+    border: none;
+    background-color: #1A1A1D;
+    color: whitesmoke;
+    font-size: 25px;
+    display: none;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+#nav_menu {
+    font-size: 0px;
+    text-align: center;
+    clear: both;
+    height: auto;
+    background-color: black;
+}
+
+#nav_menu .NavBtn {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    outline: none;
+    background-color: black;
+    font-size: 1rem;
+}
+
+#nav_menu .NavBtn:hover .Sub {
+    visibility: visible;
+}
+
+.Sub li:hover ul {
+    visibility: visible;
+}
+
+#nav_menu .NavBtn ul li a {
+    color: black;
+    text-decoration: none;
+    text-align: left;
+}
+
+#nav_menu .NavBtn:hover {
+    background-color: #cc0400;
+}
+
+li:hover {
+    background-color: #cc0400;
+}
+
+.Sub {
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.NavBtn a {
+    padding: 15px;
+    display: block;
+    color: whitesmoke;
+    min-width: 10em;
+}
+
+.BtnCloseNav {
+    border: none;
+    padding: 0px 4px;
+    outline: none;
+    border-radius: 15%;
+    color: whitesmoke;
+    background-color: black;
+    display: none;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.BtnCloseNav:hover {
+    background-color: #cc0400;
+}
+
+.clearfix {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/*Grid layout for main and side content*/
+
+#grid-layout {
+    display: grid;
+    grid-template-columns: auto 30%;
+    grid-template-rows: auto 1fr;
+    margin-top: 10px;
+}
+
+#main {
+    grid-row: 1/3;
+}
+
+.cell {
+    padding: 10px 10px;
+    overflow: hidden;
+    display: table-cell;
+    text-align: center;
+}
+
+
+/* Responsive Grid layout */
+
+@media screen and (max-width: 1000px) {
+    #grid-layout {
+        grid-template-columns: auto;
+    }
+}
+
+
+/*Responsive Navigator*/
+
+@media screen and (max-width: 500px) {
+    #WebName {
+        font-size: 4vw;
+    }
+    .DisplayInputSearch {
+        width: 100%;
+    }
+    #Hamburger {
+        display: block;
+    }
+    #nav_menu {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 2;
+        height: 100%;
+        opacity: 0.9;
+        padding-top: 60px;
+        overflow-x: hidden;
+    }
+    #nav_menu .NavBtn,
+    ul {
+        width: 100%;
+    }
+    .NavBtn a {
+        width: 100%;
+        font-size: 4vw;
+    }
+    .hide_sidenav {
+        width: 0%;
+        transition: 0.7s;
+    }
+    .DisplaySideNav {
+        width: 45%;
+    }
+    .BtnCloseNav {
+        display: block;
+    }
+    .Sub {
+        position: static;
+        display: none;
+        z-index: 0;
+    }
+    .Show-Sub {
+        display: block;
+    }
+}
+
+
+/*Movie carousel */
+
+#movie-list {
+    list-style-type: none;
+}
+
+.slick-slide {
+    width: 155px;
+    margin: 0 8px;
+    text-align: center;
+}
+
+.movie-card {
+    position: relative;
+    background-color: #3f3f3f;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.movie-card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #3f3f3f;
+    opacity: 0;
+    transition: 1.2s;
+}
+
+.movie-card:hover .movie-card:after {
+    opacity: 1;
+}
+
+.movie-card:hover .img-wrapper::before {
+    transform: scale(1);
+}
+
+.img-wrapper {
+    position: relative;
+    padding-top: 150%;
+    width: 100%;
+}
+
+.img-wrapper::before {
+    font-family: FontAwesome;
+    content: '\f04b';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 0 5px #fff;
+    color: rgb(255, 255, 255);
+    transform: scale(0);
+    transition: 0.8s;
+}
+
+.movie-poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-title {
+    margin-top: 3px;
+    padding: 0px 10px;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 100;
+    text-overflow: ellipsis;
+}
+
+.movie-rating {
+    margin: 0;
+    font-size: 0.7rem;
+    color: whitesmoke;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 2rem;
+}
+
+
+/* section list of new movie*/
+
+#new-movie {
+    padding-top: 10px;
+}
+
+.section-title {
+    text-align: left;
+    font-size: 2rem;
+    color: whitesmoke;
+    line-height: 2.5;
+}
+
+#movie-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#movie-wrapper>li {
+    width: 25%;
+}
+
+
+/* reponsive Movie carousel */
+
+@media screen and (max-width: 700px) {
+    html,
+    * {
+        font-size: 100%;
+        box-sizing: border-box
+    }
+    .slick-slide {
+        margin: 0px 5px;
+    }
+    .img-wrapper {
+        position: relative;
+        padding-top: 145%;
+        width: 100%;
+    }
+    .movie-poster {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
