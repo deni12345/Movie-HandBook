@@ -20,7 +20,7 @@ db.once('open', () => console.log('Database is connected'))
 
 app.use('/', indexRouter)
 app.use('/db', (req, res) => {
-    res.send(process.env.DATABASE_URL)
+    res.send(`hey: ${process.env.DATABASE_URL}`)
 })
 
 app.listen(process.env.PORT || 5000, () => {
