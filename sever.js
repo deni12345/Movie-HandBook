@@ -19,9 +19,6 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Database is connected'))
 
 app.use('/', indexRouter)
-app.use('/db', (req, res) => {
-    res.send(`hey: ${process.env.DATABASE_URL}`)
-})
 
 app.listen(process.env.PORT || 5000, () => {
     console.log('Sever is connected at port 5000')
