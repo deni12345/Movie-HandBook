@@ -20,7 +20,8 @@ db.once('open', () => { console.log('Database is connected') })
 
 app.use('/', indexRouter)
 
-
 app.listen(process.env.PORT || 5000, () => {
     console.log('Sever is connected at port 5000')
 })
+
+console.log('hey')
