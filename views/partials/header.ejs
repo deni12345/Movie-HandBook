@@ -1,0 +1,23 @@
+<div class="Header" class="clearfix">
+    <button type="button" id="Hamburger" onclick="DisplaySideNav()"> &#9776; </button>
+    <div id="Logo">
+        <p id="WebName">MOVIE HANDBOOK</p>
+    </div>
+    <div id="SearchBar">
+        <form>
+            <button type="button" id="BtnSearch" onclick="ExpandSearchInput()"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
+            <div id="box"><input id="InputSearchText" type="text" class="HideInputSearch" /></div>
+        </form>
+    </div>
+</div>
+
+<div id="NavMenu" class="HideSideNav">
+    <button class="BtnCloseNav" onclick="DisplaySideNav()"><a>&#10006;</a></button>
+    <a href="/" id="BtnHome" class="NavBtn">HOME</a>
+    <button id="BtnCategory" class="NavBtn dropdown" type="button">STUDIO &nbsp;<i class="fas fa-caret-down"></i> 
+            <ul class="Sub" >
+                <li> <a href="/studio">INFOMATION</a></li>
+                <li> <a href="/studio/new">ADD NEW</a></li>
+            </ul>
+        </button>
+</div>

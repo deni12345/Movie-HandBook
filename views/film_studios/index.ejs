@@ -1,0 +1,22 @@
+<div id="studio-container">
+    <h1>STUDIO LIST</h1>
+    <form action="/studio" method="GET">
+        <input type="text" name="name" value="<%= searchInput%>" />
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        <% for(let i = 0; i < studios.length; i++){ %>
+            <li>
+                <h3>
+                    <%= studios[i].name %>
+                </h3>
+                <div>
+                    <%= studios[i].founded.getDate()+'/'+(studios[i].founded.getMonth()+1) +'/'+studios[i].founded.getFullYear() %>
+                        <p>
+                            <%= studios[i].detail %>
+                        </p>
+                </div>
+            </li>
+            <% } %>
+    </ul>
+</div>
