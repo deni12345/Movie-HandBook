@@ -30,7 +30,7 @@ router.delete('/', (req, res) => {
 //get view to insert new film studio
 router.get('/new', (req, res) => {
     res.render('./film_studios/new_studio', {
-        studio: new studio(),
+        studio: new Studio(),
         date: new Date()
     })
 })
