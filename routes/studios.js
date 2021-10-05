@@ -1,7 +1,4 @@
 const express = require('express')
-const nodemon = require('nodemon')
-const { route } = require('.')
-const studio = require('../models/studio')
 const router = express.Router()
 const Studio = require('../models/studio')
 
