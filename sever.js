@@ -29,6 +29,6 @@ app.all('*', (req, res) => {
     res.status(404).send("<h1>404 not found</h1>")
 })
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
     console.log('Sever is connected at port 5000')
 })
