@@ -1,0 +1,15 @@
+<div id="movie-container">
+    <h1>MOVIE LIST</h1>
+    <form action="/movie" method="GET">
+        <label>Title</label>
+        <input type="text" name="title" value="<%= searchOptions.title%>" /><br><br>
+        <label>Publish date</label>
+        <input type="date" name="publishDate" value="<%= searchOptions.publishDate%>" />
+        <button type="submit">Search</button>
+    </form>
+    <div>
+        <% movies.forEach(movie => {%>
+            <img height="150" width="100" src="<%= movie.coverImgPath%>">
+            <%})%>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<form method="POST" action="/movie" enctype="multipart/form-data">
+    <div>
+        <label>Movie title</label>
+        <input type="text" name="title" value="<%= movie.title %>"><br><br>
+        <label>Studio</label>
+        <select name="studio">
+            <% studios.forEach(studio => {%>
+                <% if(studio.id=== movie.studio) {%> 
+                    <option selected label="<%= studio.name%> " value="<%= studio.id %>"></option>
+                <% }else{ %>
+                    <option label="<%= studio.name%> " value="<%= studio.id %>"></option>
+                <% } %>    
+            <% }); %>
+       </select>
+    </div><br>
+    <div>
+        <label>Publish date</label>
+        <input type="date" name="publishDate" value="<%= movie.publishDate == null?'':movie.publishDate.toISOString().split('T')[0]%>"><br><br>
+        <label>Actors</label>
+        <input type="text" name="actors" value="<%= movie.actors.join('-')  %> "><br><br>
+    </div>
+    <div><br>
+        <label>Background</label>
+        <input type="file" name="coverImg"><br><br>
+        <label>Poster</label>
+        <input type="file" name="posterImg">
+    </div>
+    <div><br>
+        <label>Description</label>
+        <textarea name="description"><%= movie.description %></textarea>
+    </div>
+    <a href="/movie">Cancle</a>
+    <button type="submit">Create</button>
+    <%- include('../partials/error_alert.ejs') %>
+</form>

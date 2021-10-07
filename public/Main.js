@@ -41,3 +41,10 @@ document.onclick = function(e) {
         }
     }
 };
+
+document.querySelectorAll('.message a').forEach(Element => {
+    Element.addEventListener('click', () => {
+        document.querySelector('.register-form').classList.toggle('form-appear')
+        document.querySelector('.login-form').classList.toggle('form-appear')
+    })
+})

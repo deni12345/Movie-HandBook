@@ -4,9 +4,9 @@
         <p id="WebName">MOVIE HANDBOOK</p>
     </div>
     <div id="SearchBar">
-        <form>
-            <button type="button" id="BtnSearch" onclick="ExpandSearchInput()"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
-            <div id="box"><input id="InputSearchText" type="text" class="HideInputSearch" /></div>
+        <form id="form-search" action="/movie" method="GET">
+            <button type="button" id="BtnSearch"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
+            <div id="box"><input id="InputSearchText" type="text" class="HideInputSearch" name="title" /></div>
         </form>
     </div>
 </div>
@@ -14,10 +14,16 @@
 <div id="NavMenu" class="HideSideNav">
     <button class="BtnCloseNav" onclick="DisplaySideNav()"><a>&#10006;</a></button>
     <a href="/" id="BtnHome" class="NavBtn">HOME</a>
+    <button id="btn-movie" class="NavBtn dropdown" type="button">MOVIE &nbsp;<i class="fas fa-caret-down"></i> 
+        <ul class="Sub" >
+            <li> <a href="/movie">ALL MOVIES</a></li>
+            <li> <a href="/movie/new">ADD NEW</a></li>
+        </ul>
+    </button>
     <button id="BtnCategory" class="NavBtn dropdown" type="button">STUDIO &nbsp;<i class="fas fa-caret-down"></i> 
             <ul class="Sub" >
-                <li> <a href="/studio">INFOMATION</a></li>
+                <li> <a href="/studio">ALL STUDIOS</a></li>
                 <li> <a href="/studio/new">ADD NEW</a></li>
             </ul>
-        </button>
+    </button>
 </div>

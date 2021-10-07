@@ -10,7 +10,7 @@ router.get('/', async(req, res) => {
 
     try {
         const allStudio = await Studio.find(findingObj)
-        res.render('./film_studios/index', {
+        res.render('./movie_studios/index', {
             studios: allStudio,
             searchInput: req.query.name
         })
@@ -29,44 +29,27 @@ router.delete('/', (req, res) => {
 
 //get view to insert new film studio
 router.get('/new', (req, res) => {
-    res.render('./film_studios/new_studio', {
+    res.render('./movie_studios/new_studio', {
         studio: new Studio(),
-        date: new Date()
     })
 })
 
 //create new studio's information 
-router.post('/new', validateInfo, async(req, res) => {
+router.post('/', async(req, res) => {
+    const studio = new Studio({
+        name: req.body.name.trim(),
+        founded: req.body.founded,
+        detail: req.body.detail
+    })
     try {
-        await res.newStudio.save()
+        await studio.save()
         res.status(201).redirect('/studio')
     } catch (error) {
-        res.status(500).render('./film_studios/new_studio', {
-            studio: new Studio(),
-            date: new Date(),
+        res.status(400).render('./movie_studios/new_studio', {
+            studio: studio,
             err: error.message
         })
     }
 })
-
-
-function validateInfo(req, res, next) {
-    const newStudio = new Studio({
-        name: req.body.name,
-        founded: req.body.founded,
-        detail: req.body.detail
-    })
-
-    if (req.body.name.toString().trim() == "") {
-        return res.status(400).render('./film_studios/new_studio', {
-            studio: newStudio,
-            date: `${newStudio.founded.getFullYear()}-${newStudio.founded.getMonth()+1}-${newStudio.founded.getDate()}`,
-            err: 'wrong input'
-        })
-    }
-
-    res.newStudio = newStudio
-    next()
-}
 
 module.exports = router
