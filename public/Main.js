@@ -1,4 +1,5 @@
 ShowSubMenu();
+setting();
 
 function DisplaySideNav() {
     var sideNav = document.getElementById("NavMenu");
@@ -48,3 +49,30 @@ document.querySelectorAll('.message a').forEach(Element => {
         document.querySelector('.login-form').classList.toggle('form-appear')
     })
 })
+
+//Setting the filepond
+function setting() {
+    FilePond.registerPlugin(
+        FilePondPluginFileEncode,
+        FilePondPluginImagePreview,
+        FilePondPluginImageResize,
+        FilePondPluginImageTransform);
+
+    let coverPond, posterPond
+    const fileInputs = document.querySelectorAll('input[type="file"]')
+
+    if (fileInputs.length > 0) {
+        coverPond = FilePond.create(fileInputs[0])
+        coverPond.setOptions({
+            stylePanelAspectRatio: 216 / 384,
+            imageResizeTargetWidth: 384,
+            imageResizeTargetHeight: 216
+        })
+        posterPond = FilePond.create(fileInputs[1])
+        posterPond.setOptions({
+            stylePanelAspectRatio: 350 / 200,
+            imageResizeTargetWidth: 200,
+            imageResizeTargetHeight: 350
+        })
+    }
+}

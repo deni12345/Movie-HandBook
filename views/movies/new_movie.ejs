@@ -1,4 +1,4 @@
-<form method="POST" action="/movie" enctype="multipart/form-data">
+<form method="POST" action="/movie">
     <div>
         <label>Movie title</label>
         <input type="text" name="title" value="<%= movie.title %>"><br><br>
@@ -21,9 +21,10 @@
     </div>
     <div><br>
         <label>Background</label>
-        <input type="file" name="coverImg"><br><br>
-        <label>Poster</label>
-        <input type="file" name="posterImg">
+        <div style="display: block; width: 240px; height: 160px;"><input type="file" name="coverImg"></div><br><br>
+        <label>Poster</label><br><br>
+        <div style="display: block; width: 200px; height: 300px;"><input type="file" name="posterImg"></div>
+    </div>
     </div>
     <div><br>
         <label>Description</label>

@@ -1,5 +1,3 @@
-const coverImgBasePath = 'upload/movieImg'
-const path = require('path')
 const mongoose = require('mongoose')
 const movieSchema = mongoose.Schema({
     title: {
@@ -20,10 +18,20 @@ const movieSchema = mongoose.Schema({
     },
     actors: [String],
     coverImg: {
+        type: Buffer,
+        require: true
+    },
+    coverImgType: {
         type: String,
+        require: true
     },
     posterImg: {
+        type: Buffer,
+        require: true
+    },
+    posterImgType: {
         type: String,
+        require: true
     },
     studio: {
         type: mongoose.Schema.Types.ObjectId,
@@ -33,9 +41,13 @@ const movieSchema = mongoose.Schema({
 })
 
 movieSchema.virtual('coverImgPath').get(function() {
-    if (this.coverImg)
-        return path.join('/', coverImgBasePath, this.coverImg)
+    if (this.coverImg && this.coverImgType)
+        return `data:${this.coverImgType};base64,${this.coverImg.toString('base64')}`
+})
+
+movieSchema.virtual('posterImgPath').get(function() {
+    if (this.posterImg && this.posterImgType)
+        return `data:${this.posterImgType};base64,${this.posterImg.toString('base64')}`
 })
 
 module.exports = mongoose.model('Movie', movieSchema)
-module.exports.coverImgBasePath = coverImgBasePath

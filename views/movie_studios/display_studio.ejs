@@ -1,0 +1,19 @@
+<h1>
+    <%= studio.name %>
+</h1>
+<a href="/studio/<%= studio._id %>/edit ">Edit</a>
+<%- include('../partials/delete_btn',{url:`/studio/${studio._id}?_method=DELETE`}) %>
+    <h1>
+        Movies by
+        <%= studio.name %>
+    </h1>
+    <div>
+        <% movies.forEach(movie => {%>
+            <div style="display: inline-block; padding: 5px;">
+                <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
+                <p>
+                    <%= movie.title%>
+                </p>
+            </div>
+            <%})%>
+    </div>

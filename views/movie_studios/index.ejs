@@ -11,11 +11,14 @@
                     <%= studios[i].name %>
                 </h3>
                 <div>
-                    <%= studios[i].founded.getDate()+'/'+(studios[i].founded.getMonth()+1) +'/'+studios[i].founded.getFullYear() %>
+                    <%= studios[i].founded.toISOString().split('T')[0] %>
                         <p>
                             <%= studios[i].detail %>
                         </p>
                 </div>
+                <a href="/studio/<%= studios[i]._id %> ">View</a>
+                <a href="/studio/<%= studios[i]._id %>/edit ">Edit</a>
+                <%- include('../partials/delete_btn',{url:`/studio/${studios[i]._id}?_method=DELETE`}) %>
             </li>
             <% } %>
     </ul>

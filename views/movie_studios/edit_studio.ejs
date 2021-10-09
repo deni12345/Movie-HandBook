@@ -1,0 +1,11 @@
+<div class="form-wrapper">
+    <form method="POST" action="/studio/<%= studio._id%>?_method=PUT">
+        <br /><br />
+        <input type="text" name="name" value="<%= studio.name %>" /><br /><br />
+        <input type="date" name="founded" value="<%= studio.founded==null? '' : studio.founded.toISOString().split('T')[0]%>"><br /><br />
+        <input type=" text" name="detail" value="<%= studio.detail%>" /><br /><br />
+        <a href="/studio/<%=  studio.id%>">Cancle</a>
+        <button type="submit">Edit</button>
+    </form>
+    <%- include('../partials/error_alert.ejs') %>
+</div>

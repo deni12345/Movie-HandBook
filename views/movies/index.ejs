@@ -9,7 +9,12 @@
     </form>
     <div>
         <% movies.forEach(movie => {%>
-            <img height="150" width="100" src="<%= movie.coverImgPath%>">
+            <div style="display: inline-block; padding: 5px;">
+                <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
+                <p>
+                    <%= movie.title%>
+                </p>
+            </div>
             <%})%>
     </div>
 </div>
