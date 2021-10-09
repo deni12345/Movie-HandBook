@@ -105,9 +105,9 @@ router.delete("/:id", async(req, res) => {
         res.redirect('/studio');
     } catch (error) {
         if (studio) {
-            res.redirect(`/studio`)
-        } else {
             res.redirect(`/studio/${studio._id}`)
+        } else {
+            res.redirect('/studio')
         }
     }
 });
