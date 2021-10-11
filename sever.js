@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 const indexRouter = require('./routes/index')
 const studiosRouter = require('./routes/studios')
 const movieRouter = require('./routes/movies')
+const userRouter = require('./routes/authen')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -28,6 +29,7 @@ db.once('open', () => console.log('Database is connected'))
 app.use('/', indexRouter)
 app.use('/studio', studiosRouter)
 app.use('/movie', movieRouter)
+app.use('/user', userRouter)
 
 app.all('*', (req, res) => {
     res.status(404).send("<h1>404 not found</h1>")

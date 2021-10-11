@@ -64,9 +64,9 @@ function setting() {
     if (fileInputs.length > 0) {
         coverPond = FilePond.create(fileInputs[0])
         coverPond.setOptions({
-            stylePanelAspectRatio: 216 / 384,
-            imageResizeTargetWidth: 384,
-            imageResizeTargetHeight: 216
+            stylePanelAspectRatio: 400 / 1000,
+            imageResizeTargetWidth: 1000,
+            imageResizeTargetHeight: 400
         })
         posterPond = FilePond.create(fileInputs[1])
         posterPond.setOptions({

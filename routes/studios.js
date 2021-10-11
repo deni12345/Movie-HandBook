@@ -62,7 +62,7 @@ router.get("/:id", async(req, res) => {
     }
 });
 
-//get edit view
+//get edit studio view
 router.get("/:id/edit", async(req, res) => {
     try {
         const studio = await Studio.findById(req.params.id);

@@ -10,10 +10,12 @@
     <div>
         <% movies.forEach(movie => {%>
             <div style="display: inline-block; padding: 5px;">
-                <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
-                <p>
-                    <%= movie.title%>
-                </p>
+                <a href="/movie/<%= movie._id%>">
+                    <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
+                    <p>
+                        <%= movie.title%>
+                    </p>
+               </a>
             </div>
             <%})%>
     </div>

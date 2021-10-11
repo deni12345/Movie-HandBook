@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Movie = require("../models/movie");
+const studio = require("../models/studio");
 const Studio = require("../models/studio");
-const path = require("path");
-const { title } = require("process");;
 const imageType = ["image/jpeg", "image/png", "image/gif"];
 
 //get all movie' s information
@@ -32,12 +31,9 @@ router.get("/", async(req, res) => {
     }
 });
 
-//delete a sudio
-router.delete("/", (req, res) => {});
-
 //get view to insert new movie
 router.get("/new", async(req, res) => {
-    renderNewMoviePage(res, new Movie());
+    renderNewMoviePage(res, new Movie(), "./movies/new_movie", null);
 });
 
 //create new movie
@@ -51,26 +47,87 @@ router.post("/", async(req, res) => {
     });
 
     try {
-        saveImg(movie, req.body.coverImg, req.body.posterImg)
+        saveImg(movie, req.body.coverImg, req.body.posterImg);
         await movie.save();
         res.status(201).redirect("/movie");
     } catch (error) {
-        renderNewMoviePage(res, movie, true);
+        renderNewMoviePage(res, movie, "./movies/new_movie", error);
     }
 });
 
+//get view to insert new movie
+router.get("/:id", async(req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        const studio = await Studio.findById(movie.studio);
+        res.render("./movies/display_movie", {
+            movie: movie,
+            studio: studio,
+        });
+    } catch (error) {
+        res.redirect("/movie");
+    }
+});
 
-async function renderNewMoviePage(res, movie, hasError = false) {
+//get edit movie view
+router.get("/:id/edit", async(req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        const studio = await Studio.find();
+        res.render("./movies/edit_movie", {
+            movie: movie,
+            studios: studio,
+        });
+    } catch (error) {
+        res.status(500).json({ err: error.message });
+    }
+});
+
+//update a specific movie
+router.put("/:id", async(req, res) => {
+    let movie;
+    try {
+        movie = await Movie.findById(req.params.id);
+        movie.title = req.body.title.trim() != '' ? req.body.title : movie.title;
+        movie.description = req.body.description.trim() != '' ? req.body.description : movie.description;
+        movie.publishDate = req.body.publishDate.trim() != '' ? new Date(req.body.publishDate) : movie.publishDate;
+        movie.actors = req.body.actors.trim() != '' ? req.body.actors.split('-') : movie.actors;
+        saveImg(movie, req.body.coverImg, req.body.posterImg)
+
+        await movie.save();
+        res.redirect(`/movie/${req.params.id}`);
+    } catch (error) {
+        if (movie) {
+            renderNewMoviePage(res, movie, "./movies/edit_movie", error);
+        } else {
+            renderNewMoviePage(res, movie, "./movies", error);
+        }
+    }
+});
+
+//delete a specific movie
+router.delete("/:id", async(req, res) => {
+    let movie
+    try {
+        movie = await Movie.findById(req.params.id)
+        movie.remove()
+        res.redirect('./movie')
+    } catch (error) {
+        renderNewMoviePage(res, movie, `./movie/${movie.id}`, error)
+    }
+});
+
+async function renderNewMoviePage(res, movie, path, error) {
     try {
         const studios = await Studio.find();
         const params = {
             movie: movie,
             studios: studios,
         };
-        if (hasError) {
-            params.err = "Something wrong happened";
+        if (error) {
+            params.err = error.message;
         }
-        res.status(400).render("./movies/new_movie", params);
+        res.status(400).render(path, params);
     } catch (error) {
         res.redirect("/movie");
     }
@@ -78,21 +135,32 @@ async function renderNewMoviePage(res, movie, hasError = false) {
 
 function saveImg(movie, coverEncoded, posterEncoded) {
     try {
-        let cover = JSON.parse(coverEncoded)
-        let poster = JSON.parse(posterEncoded)
-
-        if (cover != null && imageType.includes(cover.type)) {
-            movie.coverImg = new Buffer.from(cover.data, 'base64')
-            movie.coverImgType = poster.type
+        if (coverEncoded != '') {
+            let cover = JSON.parse(coverEncoded);
+            if (cover != null && imageType.includes(cover.type)) {
+                movie.coverImg = new Buffer.from(cover.data, "base64");
+                movie.coverImgType = cover.type;
+            }
+        } else if (movie.coverImg) {
+            movie.coverImg = movie.coverImg
+        } else {
+            throw new Error('Please add a cover image')
         }
-        if (poster != null && imageType.includes(poster.type)) {
-            movie.posterImg = new Buffer.from(poster.data, 'base64')
-            movie.posterImgType = poster.type
+        if (posterEncoded != '') {
+            let poster = JSON.parse(posterEncoded);
+            if (poster != null && imageType.includes(poster.type)) {
+                movie.posterImg = new Buffer.from(poster.data, "base64");
+                movie.posterImgType = poster.type;
+            }
+        } else if (movie.posterImg) {
+            movie.posterImg = movie.posterImg
+        } else {
+            throw new Error('Please add a poster image')
         }
     } catch (error) {
-        throw (error)
+        console.log(error.message)
+        throw error;
     }
-
 }
 
 module.exports = router;
