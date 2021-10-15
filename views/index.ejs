@@ -1,13 +1,33 @@
-<h1>Recently Added</h1>
-<div>
-    <% movies.forEach(movie => {%>
-        <div style="display: inline-block; padding: 5px;">
-            <a href="/movie/<%= movie._id%>">
-                <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
-                <p>
-                    <%= movie.title%>
-                </p>
-            </a>
+<link rel="stylesheet" href="/index.css">
+<div id="grid-container">
+    <section class="grid-item">
+        <h1>Recently Added</h1>
+        <div>
+            <% movies.forEach(movie => {%>
+                <div style="display: inline-block; padding: 5px;">
+                    <a href="/movie/<%= movie._id%>">
+                    <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
+                    <p>
+                        <%= movie.title%>
+                    </p>
+                </a>
+                </div>
+                <%})%>
         </div>
-        <%})%>
+    </section>
+    <section class="grid-item">
+        <h1>All movies</h1>
+        <div>
+            <% movies.forEach(movie => {%>
+                <div style="display: inline-block; padding: 5px;">
+                    <a href="/movie/<%= movie._id%>">
+                    <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
+                    <p>
+                        <%= movie.title%>
+                    </p>
+                </a>
+                </div>
+                <%})%>
+        </div>
+    </section>
 </div>

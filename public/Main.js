@@ -2,53 +2,47 @@ ShowSubMenu();
 setting();
 
 function DisplaySideNav() {
-    var sideNav = document.getElementById("NavMenu");
-    sideNav.classList.toggle('DisplaySideNav');
+    var sideNav = document.getElementById("nav-menu");
+    sideNav.classList.toggle('display-side-nav');
+    HideSub();
 }
 
 function ShowSubMenu() {
-    let buttons = document.querySelectorAll('.NavBtn');
+    let buttons = document.querySelectorAll('.nav-btn');
     buttons.forEach(element => {
         element.addEventListener("click", function() {
-            if (element.querySelectorAll('.Sub').length > 0) {
-                element.querySelectorAll('.Sub')[0].classList.toggle("Show-Sub");
+            if (element.querySelectorAll('.sub').length > 0) {
+                element.querySelectorAll('.sub')[0].classList.toggle("Show-Sub");
             }
-            HideSub(element.querySelectorAll('.Sub')[0]);
+            HideSub(element.querySelectorAll('.sub')[0]);
         });
     });
 }
 
 function HideSub(exeptedClass) {
-    let listSub = document.querySelectorAll('.Sub');
+    let listSub = document.querySelectorAll('.sub');
     listSub.forEach(element => {
         if (element !== exeptedClass) {
-            element.classList.remove('Show-Sub');
+            element.classList.remove('show-sub');
         }
     });
 }
 
 
 document.onclick = function(e) {
-    var inputSearch = document.getElementById("InputSearchText");
-    var sideNav = document.getElementById("NavMenu");
-    if (inputSearch.classList.contains('DisplayInputSearch')) {
-        if (!e.target.closest('#BtnSearch') && e.target.id !== 'InputSearchText') {
-            inputSearch.classList.remove("DisplayInputSearch");
+    var inputSearch = document.getElementById("input-search-text");
+    var sideNav = document.getElementById("nav-menu");
+    if (inputSearch.classList.contains('display-input-search')) {
+        if (!e.target.closest('#btn-search') && e.target.id !== 'input-search-text') {
+            inputSearch.classList.remove("display-input-search");
         }
-    } else if (sideNav.classList.contains('DisplaySideNav')) {
-        if (!e.target.closest('#NavMenu') && e.target.id !== 'Hamburger') {
-            sideNav.classList.remove("DisplaySideNav");
+    } else if (sideNav.classList.contains('display-side-nav')) {
+        if (!e.target.closest('#nav-menu') && e.target.id !== 'hamburger') {
+            sideNav.classList.remove("display-side-nav");
             HideSub();
         }
     }
 };
-
-document.querySelectorAll('.message a').forEach(Element => {
-    Element.addEventListener('click', () => {
-        document.querySelector('.register-form').classList.toggle('form-appear')
-        document.querySelector('.login-form').classList.toggle('form-appear')
-    })
-})
 
 //Setting the filepond
 function setting() {

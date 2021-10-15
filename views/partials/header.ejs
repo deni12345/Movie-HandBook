@@ -1,29 +1,30 @@
-<div class="Header" class="clearfix">
-    <button type="button" id="Hamburger" onclick="DisplaySideNav()"> &#9776; </button>
-    <div id="Logo">
+<div class="header" class="clearfix">
+    <button type="button" id="hamburger" onclick="DisplaySideNav()"> &#9776; </button>
+    <div id="logo">
         <p id="WebName">MOVIE HANDBOOK</p>
     </div>
-    <div id="SearchBar">
+    <div id="search-bar">
         <form id="form-search" action="/movie" method="GET">
-            <button type="button" id="BtnSearch"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
-            <div id="box"><input id="InputSearchText" type="text" class="HideInputSearch" name="title" /></div>
+            <button type="button" id="btn-search"><i class="fas fa-search" style="color: whitesmoke;"></i></button>
+            <div id="box"><input id="input-search-text" type="text" class="hide-input-search" name="title" /></div>
         </form>
     </div>
 </div>
 
-<div id="NavMenu" class="HideSideNav">
-    <button class="BtnCloseNav" onclick="DisplaySideNav()"><a>&#10006;</a></button>
-    <a href="/" id="BtnHome" class="NavBtn">HOME</a>
-    <button id="btn-movie" class="NavBtn dropdown" type="button">MOVIE &nbsp;<i class="fas fa-caret-down"></i> 
-        <ul class="Sub" >
+<div id="nav-menu" class="hide-side-nav">
+    <button class="btn-close-nav" onclick="DisplaySideNav()"><a>&#10006;</a></button>
+    <a href="/" id="btn-home" class="nav-btn">HOME</a>
+    <button id="btn-movie" class="nav-btn dropdown" type="button">MOVIE <i class="fas fa-caret-down"></i> 
+        <ul class="sub" >
             <li> <a href="/movie">ALL MOVIES</a></li>
             <li> <a href="/movie/new">ADD NEW</a></li>
         </ul>
     </button>
-    <button id="BtnCategory" class="NavBtn dropdown" type="button">STUDIO &nbsp;<i class="fas fa-caret-down"></i> 
-            <ul class="Sub" >
+    <button id="btn-category" class="nav-btn dropdown" type="button">STUDIO <i class="fas fa-caret-down"></i> 
+            <ul class="sub" >
                 <li> <a href="/studio">ALL STUDIOS</a></li>
                 <li> <a href="/studio/new">ADD NEW</a></li>
             </ul>
     </button>
+    <a href="/user/logout" id="btn-logout" class="nav-btn">LOGOUT</a>
 </div>

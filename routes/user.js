@@ -2,12 +2,18 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 //get account info
 router.get('/login', (req, res) => {
-    res.render('./user/login', { layout: false })
+    renderLoginPage(res, 'login-form', './user/login')
 })
 
+//get logout
+router.get('/logout', (req, res) => {
+    res.cookie('token', '', { maxAge: 1 })
+    res.redirect('/')
+})
 
 router.post('/login', async(req, res) => {
     try {
@@ -15,13 +21,20 @@ router.post('/login', async(req, res) => {
         if (user) {
             const check = await bcrypt.compare(req.body.password, user.password)
             if (check) {
+                const accessToken = jwt.sign({
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email
+                }, process.env.ACCESS_TOKEN_KEY)
+
+                res.cookie('token', accessToken)
                 return res.redirect('/')
             } else {
                 throw new Error('invalid password')
             }
         }
     } catch (error) {
-        res.send(error.message)
+        renderLoginPage(res, 'login-form', './user/login', error)
     }
 })
 
@@ -30,7 +43,7 @@ router.post('/signup', async(req, res) => {
     try {
         const user = new User()
         if (!(req.body.name && req.body.password && req.body.email)) {
-            return res.send("Some thing is not right here")
+            throw new Error("Some thing is not right here")
         } else {
 
             user.name = req.body.name
@@ -41,8 +54,20 @@ router.post('/signup', async(req, res) => {
             return res.redirect('/user/login')
         }
     } catch (error) {
-        res.status(500).send(error.message)
+        renderLoginPage(res, 'register-form', './user/login', error)
     }
 })
+
+function renderLoginPage(res, formName, path, error = null) {
+    let formObj = {
+        formActive: formName,
+        layout: false
+    }
+    if (error) {
+        formObj.err = error.message;
+    }
+    res.render(path, formObj)
+}
+
 
 module.exports = router

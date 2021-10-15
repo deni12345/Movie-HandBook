@@ -1,0 +1,10 @@
+#grid-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin: 0px auto;
+    width: 90%;
+}
+
+section {
+    background-color: skyblue;
+}

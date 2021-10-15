@@ -17,14 +17,21 @@
                 <input type="password" placeholder="password" name="password" />
                 <input type="text" placeholder="email address" name="email" />
                 <button type="submit" form="register-form">create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
+                <%- include('../partials/error_alert') %>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
             </form>
-            <form id="login-form" class="login-form form-appear" method="post" action="/user/login">
+            <form id="login-form" class="login-form" method="post" action="/user/login">
                 <input type="text" placeholder="username" name="name" />
                 <input type="password" placeholder="password" name="password" />
                 <button type="submit" form="login-form">login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
+                <%- include('../partials/error_alert') %>
+                    <p class="message">Not registered? <a href="#">Create an account</a></p>
             </form>
+            <% if(locals.formActive){ %>
+                <script>
+                    document.querySelector(`#<%=formActive%>`).classList.add('form-appear')
+                </script>
+                <% } %>
         </div>
     </div>
     <script>

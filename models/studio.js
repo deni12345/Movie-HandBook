@@ -12,6 +12,11 @@ const studioSchema = mongoose.Schema({
         required: true,
         default: new Date()
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     detail: String
 })
 

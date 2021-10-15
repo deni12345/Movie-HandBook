@@ -37,6 +37,11 @@ const movieSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         require: true,
         ref: 'Studio'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
 })
 

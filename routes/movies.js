@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Movie = require("../models/movie");
-const studio = require("../models/studio");
 const Studio = require("../models/studio");
 const imageType = ["image/jpeg", "image/png", "image/gif"];
 
 //get all movie' s information
 router.get("/", async(req, res) => {
     let findingObj = {};
+    findingObj.user = req.user._id
     if (req.query.title) {
         findingObj.title = new RegExp(req.query.title.trim(), "i");
     }
@@ -33,7 +33,7 @@ router.get("/", async(req, res) => {
 
 //get view to insert new movie
 router.get("/new", async(req, res) => {
-    renderNewMoviePage(res, new Movie(), "./movies/new_movie", null);
+    renderNewMoviePage(req, res, new Movie(), "./movies/new_movie", null);
 });
 
 //create new movie
@@ -44,6 +44,7 @@ router.post("/", async(req, res) => {
         publishDate: new Date(req.body.publishDate),
         actors: req.body.actors.split("-"),
         studio: req.body.studio,
+        user: req.user._id
     });
 
     try {
@@ -55,10 +56,10 @@ router.post("/", async(req, res) => {
     }
 });
 
-//get view to insert new movie
+//get detail vie of a movie
 router.get("/:id", async(req, res) => {
     try {
-        const movie = await Movie.findById(req.params.id);
+        const movie = await Movie.findOne({ _id: req.params.id, user: req.user._id });
         const studio = await Studio.findById(movie.studio);
         res.render("./movies/display_movie", {
             movie: movie,
@@ -72,14 +73,14 @@ router.get("/:id", async(req, res) => {
 //get edit movie view
 router.get("/:id/edit", async(req, res) => {
     try {
-        const movie = await Movie.findById(req.params.id);
-        const studio = await Studio.find();
+        const movie = await Movie.findOne({ _id: req.params.id, user: req.user._id });
+        const studio = await Studio.find({ user: req.user._id });
         res.render("./movies/edit_movie", {
             movie: movie,
             studios: studio,
         });
     } catch (error) {
-        res.status(500).json({ err: error.message });
+        res.redirect(`/movie/${req.params.id}`);
     }
 });
 
@@ -92,15 +93,17 @@ router.put("/:id", async(req, res) => {
         movie.description = req.body.description.trim() != '' ? req.body.description : movie.description;
         movie.publishDate = req.body.publishDate.trim() != '' ? new Date(req.body.publishDate) : movie.publishDate;
         movie.actors = req.body.actors.trim() != '' ? req.body.actors.split('-') : movie.actors;
+        movie.studio = req.body.studio.trim() != '' ? req.body.studio : movie.studio;
+        movie.user = req.user._id;
         saveImg(movie, req.body.coverImg, req.body.posterImg)
 
         await movie.save();
         res.redirect(`/movie/${req.params.id}`);
     } catch (error) {
         if (movie) {
-            renderNewMoviePage(res, movie, "./movies/edit_movie", error);
+            renderNewMoviePage(req, res, movie, "./movies/edit_movie", error);
         } else {
-            renderNewMoviePage(res, movie, "./movies", error);
+            res.redirect('/movie')
         }
     }
 });
@@ -109,17 +112,21 @@ router.put("/:id", async(req, res) => {
 router.delete("/:id", async(req, res) => {
     let movie
     try {
-        movie = await Movie.findById(req.params.id)
-        movie.remove()
+        movie = await Movie.findOne({ _id: req.params.id, user: req.user._id })
+        await movie.remove()
         res.redirect('./movie')
     } catch (error) {
-        renderNewMoviePage(res, movie, `./movie/${movie.id}`, error)
+        if (movie) {
+            renderNewMoviePage(req, res, movie, `./movie/${movie.id}`, error)
+        } else {
+            res.redirect('/movie')
+        }
     }
 });
 
-async function renderNewMoviePage(res, movie, path, error) {
+async function renderNewMoviePage(req, res, movie, path, error) {
     try {
-        const studios = await Studio.find();
+        const studios = await Studio.find({ user: req.user._id });
         const params = {
             movie: movie,
             studios: studios,
@@ -146,6 +153,7 @@ function saveImg(movie, coverEncoded, posterEncoded) {
         } else {
             throw new Error('Please add a cover image')
         }
+
         if (posterEncoded != '') {
             let poster = JSON.parse(posterEncoded);
             if (poster != null && imageType.includes(poster.type)) {

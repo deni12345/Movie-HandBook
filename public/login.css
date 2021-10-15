@@ -1,17 +1,32 @@
 /* login form */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-image: url('./background/cinema-movie-cine-movies-publico-premiere-1045589-wallhere.com.jpg');
+    display: table;
+    height: 100vh;
+    width: 100%;
+}
+
 .login-page {
-    padding: 8% 0 0;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
     margin: auto;
 }
 
 .form {
+    display: block;
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
+    background: rgba(0, 0, 0, 0.5);
     max-width: 360px;
-    margin: 0 auto 100px;
+    margin: 0px auto;
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);

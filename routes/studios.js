@@ -6,6 +6,7 @@ const Studio = require('../models/studio');
 //get all film studios' s information
 router.get("/", async(req, res) => {
     let findingObj = {};
+    findingObj.user = req.user._id
     if (req.query.name) findingObj.name = new RegExp(req.query.name, "i");
 
     try {
@@ -35,6 +36,7 @@ router.post("/", async(req, res) => {
         name: req.body.name.trim(),
         founded: req.body.founded,
         detail: req.body.detail,
+        user: req.user._id
     });
     try {
         await studio.save();
@@ -50,14 +52,14 @@ router.post("/", async(req, res) => {
 //get a specific studio
 router.get("/:id", async(req, res) => {
     try {
-        const movies = await Movie.find({ studio: req.params.id }).limit(8).exec()
-        const studio = await Studio.findById(req.params.id)
+        const movies = await Movie.find({ studio: req.params.id, user: req.user._id }).limit(8).exec()
+        const studio = await Studio.findOne({ _id: req.params.id, user: req.user._id })
         res.render('./movie_studios/display_studio', {
             studio: studio,
             movies: movies
         })
+
     } catch (error) {
-        console.log(error)
         res.redirect('/studio')
     }
 });
@@ -65,12 +67,16 @@ router.get("/:id", async(req, res) => {
 //get edit studio view
 router.get("/:id/edit", async(req, res) => {
     try {
-        const studio = await Studio.findById(req.params.id);
-        res.render("./movie_studios/edit_studio", {
-            studio: studio
-        });
+        const studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
+        if (studio) {
+            res.render("./movie_studios/edit_studio", {
+                studio: studio
+            });
+        } else {
+            return res.redirect('/studio')
+        }
     } catch (error) {
-        res.status(500).json({ err: error.message });
+        res.redirect(`/studio/${req.params.id}`)
     }
 });
 
@@ -78,10 +84,10 @@ router.get("/:id/edit", async(req, res) => {
 router.put("/:id", async(req, res) => {
     let studio
     try {
-        studio = await Studio.findById(req.params.id);
-        if (req.body.name) studio.name = req.body.name;
-        if (req.body.founded) studio.founded = new Date(req.body.founded);
-        if (req.body.detail) studio.detail = req.body.detail;
+        studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
+        studio.name = req.body.name.trim() != '' ? req.body.name : studio.name;
+        studio.founded = req.body.founded.trim() != '' ? new Date(req.body.founded) : studio.founded;
+        studio.detail = req.body.detail.trim() != '' ? req.body.detail : studio.detail;
         await studio.save()
         res.redirect(`/studio/${studio._id}`)
     } catch (error) {
@@ -91,7 +97,7 @@ router.put("/:id", async(req, res) => {
                 err: error.message,
             });
         } else {
-            res.status(500).redirect('/studio')
+            res.redirect('/studio')
         }
     }
 });
@@ -100,7 +106,7 @@ router.put("/:id", async(req, res) => {
 router.delete("/:id", async(req, res) => {
     let studio
     try {
-        studio = await Studio.findById(req.params.id);
+        studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
         await studio.remove()
         res.redirect('/studio');
     } catch (error) {
