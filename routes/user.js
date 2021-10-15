@@ -32,6 +32,8 @@ router.post('/login', async(req, res) => {
             } else {
                 throw new Error('invalid password')
             }
+        } else {
+            throw new Error('invalid account')
         }
     } catch (error) {
         renderLoginPage(res, 'login-form', './user/login', error)
