@@ -209,11 +209,11 @@ html,
     .nav-btn:hover {
         background-color: transparent;
     }
-    .nav-btn .Sub a {
+    .nav-btn .sub a {
         text-align: center;
         font-size: 4vw;
     }
-    i {
+    .fa-caret-down {
         position: absolute;
         right: 10px;
     }
@@ -233,6 +233,7 @@ html,
         z-index: 0;
     }
     .show-sub {
+        margin-top: 10px;
         visibility: visible;
         display: block;
     }

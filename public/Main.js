@@ -12,7 +12,7 @@ function ShowSubMenu() {
     buttons.forEach(element => {
         element.addEventListener("click", function() {
             if (element.querySelectorAll('.sub').length > 0) {
-                element.querySelectorAll('.sub')[0].classList.toggle("Show-Sub");
+                element.querySelectorAll('.sub')[0].classList.toggle("show-sub");
             }
             HideSub(element.querySelectorAll('.sub')[0]);
         });
