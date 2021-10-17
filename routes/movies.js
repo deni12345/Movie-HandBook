@@ -52,7 +52,8 @@ router.post("/", async(req, res) => {
         await movie.save();
         res.status(201).redirect("/movie");
     } catch (error) {
-        renderNewMoviePage(res, movie, "./movies/new_movie", error);
+        console.log('hi')
+        renderNewMoviePage(req, res, movie, "./movies/new_movie", error);
     }
 });
 
@@ -101,7 +102,7 @@ router.put("/:id", async(req, res) => {
         res.redirect(`/movie/${req.params.id}`);
     } catch (error) {
         if (movie) {
-            renderNewMoviePage(req, res, movie, "./movies/edit_movie", error);
+            renderNewMoviePage(req, res, movie, "./movies/  ", error);
         } else {
             res.redirect('/movie')
         }
@@ -134,9 +135,10 @@ async function renderNewMoviePage(req, res, movie, path, error) {
         if (error) {
             params.err = error.message;
         }
-        res.status(400).render(path, params);
+        res.render(path, params);
     } catch (error) {
-        res.redirect("/movie");
+        console.log('hello')
+        res.redirect('/movie');
     }
 }
 
@@ -166,7 +168,6 @@ function saveImg(movie, coverEncoded, posterEncoded) {
             throw new Error('Please add a poster image')
         }
     } catch (error) {
-        console.log(error.message)
         throw error;
     }
 }

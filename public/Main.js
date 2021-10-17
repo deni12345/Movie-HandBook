@@ -1,5 +1,6 @@
 ShowSubMenu();
 setting();
+settingSlickSlider();
 
 function DisplaySideNav() {
     var sideNav = document.getElementById("nav-menu");
@@ -58,15 +59,38 @@ function setting() {
     if (fileInputs.length > 0) {
         coverPond = FilePond.create(fileInputs[0])
         coverPond.setOptions({
-            stylePanelAspectRatio: 400 / 1000,
+            stylePanelLayout: 'integrated',
             imageResizeTargetWidth: 1000,
-            imageResizeTargetHeight: 400
+            imageResizeTargetHeight: 400,
+            imagePreviewUpscale: true
         })
         posterPond = FilePond.create(fileInputs[1])
         posterPond.setOptions({
-            stylePanelAspectRatio: 350 / 200,
+            stylePanelLayout: 'integrated',
             imageResizeTargetWidth: 200,
             imageResizeTargetHeight: 350
         })
     }
+}
+
+function settingSlickSlider() {
+    $('.movie-list').slick({
+        accessibility: false,
+        prevArrow: false,
+        nextArrow: false,
+        infinite: false,
+        variableWidth: false,
+        speed: 300,
+        slidesToShow: 6,
+        slidesToScroll: 2,
+        responsive: [{
+            breakpoint: 700,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                variableWidth: false,
+            }
+
+        }]
+    });
 }

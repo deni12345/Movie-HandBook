@@ -1,0 +1,51 @@
+#container {
+    background-color: var(--container-color);
+    margin: 30px auto;
+    width: 90%;
+}
+
+.flex-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.form-group-index {
+    text-align: center;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    background-color: var(--container-color);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.date-filter {
+    display: inline-block;
+    width: 20%;
+}
+
+.flex-item {
+    width: 100%;
+    text-align: center;
+}
+
+:root {
+    --container-color: #181818;
+}

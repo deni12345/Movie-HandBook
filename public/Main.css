@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 html,
 * {
+    color: white;
     font-size: 100%;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
@@ -11,10 +12,8 @@ html,
     -webkit-font-smoothing: antialiased;
 }
 
-#container {
-    background-color: whitesmoke;
-    width: 85%;
-    margin: 0 auto;
+body {
+    background-color: var(--body-color);
 }
 
 .header {
@@ -132,7 +131,7 @@ html,
     background-color: var(--hover);
 }
 
-.Sub>li:hover {
+.sub li>a:hover {
     background-color: var(--hover);
 }
 
@@ -240,25 +239,18 @@ html,
 }
 
 
-/*Movie carousel */
+/*Movie card custom*/
 
 #movie-list {
     list-style-type: none;
-}
-
-.slick-slide {
-    width: 155px;
-    margin: 0 8px;
-    text-align: center;
 }
 
 .movie-card {
     position: relative;
     background-color: #3f3f3f;
     overflow: hidden;
-    padding-left: 5px;
-    padding-right: 5px;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .movie-card:after {
@@ -283,7 +275,7 @@ html,
 
 .img-wrapper {
     position: relative;
-    padding-top: 150%;
+    padding-top: 140%;
     width: 100%;
 }
 
@@ -339,6 +331,19 @@ html,
 }
 
 
+/*slick slider custom*/
+
+.slick-slide {
+    padding: 8px;
+    margin: 0 8px;
+    text-align: center;
+}
+
+.slick-list .slick-track {
+    margin-left: 0;
+}
+
+
 /* section list of new movie*/
 
 #new-movie {
@@ -385,7 +390,13 @@ html,
     }
 }
 
+.error {
+    color: red;
+    font-size: 12px;
+}
+
 :root {
     --header-color: #02021e;
     --hover: #cc0400;
+    --body-color: #222222;
 }

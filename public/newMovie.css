@@ -1,0 +1,139 @@
+#container {
+    background-color: var(--container-color);
+    margin: 30px auto;
+    width: 90%;
+}
+
+.title {
+    margin: 16px;
+    padding-left: 10px;
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+
+.title::before {
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+    display: block;
+    border: 2px solid red;
+    content: '';
+}
+
+#flex-wrap,
+#reverse-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-7 {
+    flex: 0 0 58.33333%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.col-5 {
+    flex-grow: 1;
+    padding-right: 20px;
+}
+
+.inner-col-7 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 3rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    background-color: var(--container-color);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inner-col {
+    flex: 0 0 50%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+textarea {
+    height: auto;
+}
+
+select.form-control {
+    padding-bottom: 10px;
+}
+
+.filepond-wrap {
+    margin-bottom: 3rem;
+    border: 1px solid;
+}
+
+.ct-filepond-area {
+    position: relative;
+    padding-top: 50%;
+    height: 100%!important;
+    background-color: var(--container-color);
+}
+
+.filepond--item {
+    height: 100%!important;
+}
+
+.filepond--credits {
+    visibility: hidden!important;
+}
+
+.filepond--drop-label {
+    height: 100%;
+}
+
+.form-btn {
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: none;
+    background-color: slateblue;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+:root {
+    --container-color: #181818;
+}
