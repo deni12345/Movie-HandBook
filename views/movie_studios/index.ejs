@@ -1,25 +1,33 @@
-<div id="studio-container">
-    <h1>STUDIO LIST</h1>
-    <form action="/studio" method="GET">
-        <input type="text" name="name" value="<%= searchInput%>" />
-        <button type="submit">Search</button>
-    </form>
-    <ul>
-        <% for(let i = 0; i < studios.length; i++){ %>
-            <li>
-                <h3>
-                    <%= studios[i].name %>
-                </h3>
-                <div>
-                    <%= studios[i].founded.toISOString().split('T')[0] %>
-                        <p>
-                            <%= studios[i].detail %>
-                        </p>
-                </div>
-                <a href="/studio/<%= studios[i]._id %> ">View</a>
-                <a href="/studio/<%= studios[i]._id %>/edit ">Edit</a>
-                <%- include('../partials/delete_btn',{url:`/studio/${studios[i]._id}?_method=DELETE`}) %>
-            </li>
-            <% } %>
-    </ul>
+<link rel="stylesheet" href="/studioIndex.css">
+<div id="container">
+    <div class="flex-wrap">
+        <h1 class="title">STUDIO LIST</h1>
+        <div class="flex-item">
+            <form action="/studio" method="GET">
+                <input type="text" name="name" value="<%= searchInput%>" class="studio-search-input" placeholder="studio name" />
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+        <div class="flex-item">
+            <ul class="studio-list-wrap">
+                <% for(let i = 0; i < studios.length; i++){ %>
+                    <li>
+                        <div class="studio-info">
+                            <h3 class="studio-name">
+                                <%= studios[i].name %>
+                            </h3>
+                            <p>
+                                <%= studios[i].founded.toISOString().split('T')[0] %>
+                            </p>
+                        </div>
+                        <div class="btn-group-right">
+                            <a href="/studio/<%= studios[i]._id %>" class="btn">View</a>
+                            <a href="/studio/<%= studios[i]._id %>/edit" class="btn">Edit</a>
+                            <%- include('../partials/delete_btn',{url:`/studio/${studios[i]._id}?_method=DELETE`}) %>
+                        </div>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+    </div>
 </div>

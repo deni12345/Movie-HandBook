@@ -10,6 +10,7 @@ html,
     text-decoration: none;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -250,7 +251,7 @@ body {
     background-color: #3f3f3f;
     overflow: hidden;
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .movie-card:after {
@@ -309,7 +310,7 @@ body {
 }
 
 .movie-title {
-    margin-top: 3px;
+    margin-top: 8px;
     padding: 0px 10px;
     font-size: 1rem;
     color: white;
@@ -322,12 +323,12 @@ body {
 
 .movie-rating {
     margin: 0;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: whitesmoke;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    line-height: 2rem;
+    line-height: 2;
 }
 
 

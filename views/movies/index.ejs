@@ -1,26 +1,33 @@
 <link rel="stylesheet" href="/movieIndex.css">
 <div id="container">
     <div class="flex-wrap">
-        <h1>MOVIE LIST</h1>
+        <h1 class="title">MOVIE LIST</h1>
         <div class="flex-item">
             <form action="/movie" method="GET">
                 <label>Publish date</label>
                 <input type="date" name="publishDate" value="<%= searchOptions.publishDate%>" class="form-control date-filter" />
-                <button type="submit">Search</button>
+                <button type="submit" class="form-btn">Search</button>
 
             </form>
         </div>
         <div class="flex-item">
-            <% movies.forEach(movie => {%>
-                <div style="display: inline-block; padding: 5px;">
-                    <a href="/movie/<%= movie._id%>">
-                        <img style="width: 200px; height: 300px;" src="<%= movie.posterImgPath%>">
-                        <p>
-                            <%= movie.title%>
-                        </p>
-                   </a>
-                </div>
-                <%})%>
+            <ul class="movie-list-wrap">
+                <% movies.forEach(movie => {%>
+                    <li class="flex-movie-item">
+                        <a href="/movie/<%= movie._id%>">
+                            <div class="movie-card">
+                                <div class="img-wrapper">
+                                    <img src="<%= movie.posterImgPath%>" class="movie-poster" width="200">
+                                </div>
+                                <h1 class="movie-title">
+                                    <%= movie.title%>
+                                </h1>
+                                <p class="movie-rating">rating: 10/10</p>
+                            </div>
+                        </a>
+                    </li>
+                    <%})%>
+            </ul>
         </div>
     </div class="flex-wrap">
 </div>

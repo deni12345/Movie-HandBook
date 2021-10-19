@@ -137,7 +137,6 @@ async function renderNewMoviePage(req, res, movie, path, error) {
         }
         res.render(path, params);
     } catch (error) {
-        console.log('hello')
         res.redirect('/movie');
     }
 }

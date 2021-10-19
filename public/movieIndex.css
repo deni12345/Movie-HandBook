@@ -36,14 +36,72 @@ label {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.form-btn {
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    background-color: slateblue;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .date-filter {
     display: inline-block;
     width: 20%;
+    margin: 0 1rem;
 }
 
 .flex-item {
     width: 100%;
     text-align: center;
+    padding: 0 20px 20px 20px;
+}
+
+.title {
+    margin: 16px;
+    padding-left: 10px;
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+
+.title::before {
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+    display: block;
+    border: 2px solid red;
+    content: '';
+}
+
+.movie-list-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.flex-movie-item {
+    width: 15%;
+}
+
+@media screen and (max-width: 900px) {
+    .movie-list-wrap {
+        gap: 10%;
+    }
+    .flex-movie-item {
+        width: 45%;
+    }
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 :root {

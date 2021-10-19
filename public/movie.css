@@ -1,0 +1,42 @@
+#container {
+    background-color: var(--container-color);
+    margin: 30px auto;
+    width: 90%;
+}
+
+.shape-container {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.movie-title-group {
+    text-align: center;
+    padding: 1rem 0rem;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+}
+
+.movie-title {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.inline-btn {
+    display: inline-block;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    background-color: slateblue;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+:root {
+    --container-color: #181818;
+}

@@ -1,11 +1,29 @@
-<div class="form-wrapper">
+<link rel="stylesheet" href="/newStudio.css">
+<div id="container">
     <form method="POST" action="/studio">
-        <br /><br />
-        <input type="text" name="name" value="<%= studio.name %>" /><br /><br />
-        <input type="date" name="founded" value="<%= studio.founded==null? '' : studio.founded.toISOString().split('T')[0]%>"><br /><br />
-        <input type=" text" name="detail" value="<%= studio.detail%>" /><br /><br />
-        <a href="/studio">Cancle</a>
-        <button type="submit" formmethod="post">Create</button>
-    </form>
-    <%- include('../partials/error_alert.ejs') %>
+        <div id="flex-wrap">
+            <h1 class="title">NEW STUDIO</h1>
+            <div class="col-1">
+                <div class="form-group">
+                    <label>Studio name</label>
+                    <input class="form-control" type="text" name="name" value="<%= studio.name %>" placeholder="studio name" />
+                </div>
+                <div class="form-group">
+                    <label>Founded</label>
+                    <input class="form-control date-control" type="date" name="founded" value="<%= studio.founded==null? '' : studio.founded.toISOString().split('T')[0]%>">
+                </div>
+            </div>
+            <div class="form-group col-2">
+                <label>Detail</label>
+                <textarea class="form-control" name="detail" rows="9" placeholder="studio history"><%= studio.detail%></textarea>
+            </div>
+            <div class="form-group">
+                <a href="/studio" class="form-btn">Cancle</a>
+                <button type="submit" formmethod="post" class="form-btn">Create</button>
+            </div>
+        </div>
+
+        <%- include('../partials/error_alert.ejs') %>
+</div>
+</form>
 </div>
