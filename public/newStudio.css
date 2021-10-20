@@ -16,10 +16,9 @@
 
 .title::before {
     position: absolute;
-    left: 18px;
+    left: 0;
     top: 0;
     bottom: 0;
-    left: 0;
     background-color: red;
     display: block;
     border: 2px solid red;
