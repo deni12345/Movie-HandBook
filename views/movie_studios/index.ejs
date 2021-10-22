@@ -4,7 +4,7 @@
         <h1 class="title">STUDIO LIST</h1>
         <div class="flex-item">
             <form action="/studio" method="GET">
-                <input type="text" name="name" value="<%= searchInput%>" class="studio-search-input" placeholder="studio name" />
+                <input type="text" name="name" value="<%= searchOptions.title%>" class="studio-search-input" placeholder="studio name" />
                 <button type="submit" class="btn">Search</button>
             </form>
         </div>
@@ -28,6 +28,9 @@
                     </li>
                     <% } %>
             </ul>
+            <div id="pagination-wrap">
+                <%- include('../partials/pagination',{pageRoot:'studio'}) %>
+            </div>
         </div>
     </div>
 </div>

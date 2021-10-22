@@ -1,0 +1,40 @@
+<% if (totalPages > 0) { %>
+    <ul class="pagination text-center">
+        <% if (current== 1) { %>
+            <li class="disabled">
+                <a> First </a>
+            </li>
+            <% } else { %>
+                <%- include('../partials/page_li',{root:pageRoot,pageNum: 1,pageText:'First'})%>
+                    <% } %>
+                        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                            <% if (i !== 1) { %>
+                                <li class="disabled">
+                                    <a> ...</a>
+                                </li>
+                                <% } %>
+                                    <% for (; i <= (Number(current) + 4) && i <= totalPages; i++) {%>
+                                        <% if (i == current) { %>
+                                            <li class="active">
+                                                <a>
+                                                    <%= i %>
+                                                </a>
+                                            </li>
+                                            <% } else { %>
+                                                <%- include('../partials/page_li',{root:pageRoot,pageNum: i,pageText: i})%>
+                                                    <% } %>
+                                                        <% if (i == Number(current) + 4 && i < totalPages) { %>
+                                                            <li class="disabled">
+                                                                <a> ...</a>
+                                                            </li>
+                                                            <% } %>
+                                                                <% } %>
+                                                                    <% if (current == totalPages) { %>
+                                                                        <li class="disabled">
+                                                                            <a> Last </a>
+                                                                        </li>
+                                                                        <% } else { %>
+                                                                            <%- include('../partials/page_li',{root:pageRoot,pageNum: totalPages,pageText: 'Last'})%>
+                                                                                <% } %>
+    </ul>
+    <% } %>

@@ -1,13 +1,12 @@
-<link rel="stylesheet" href="/movieIndex.css">
+<link rel="stylesheet" href="/movieIndex.css" />
 <div id="container">
     <div class="flex-wrap">
         <h1 class="title">MOVIE LIST</h1>
         <div class="flex-item">
             <form action="/movie" method="GET">
                 <label>Publish date</label>
-                <input type="date" name="publishDate" value="<%= searchOptions.publishDate%>" class="form-control date-filter" />
-                <button type="submit" class="form-btn">Search</button>
-
+                <input type="date" name="publishDate" value="<%= searchOptions.publishDate%>" class="form-control date-filter" form='form-search' />
+                <button type="submit" class="form-btn" form='form-search'>Search</button>
             </form>
         </div>
         <div class="flex-item">
@@ -17,10 +16,10 @@
                         <a href="/movie/<%= movie._id%>">
                             <div class="movie-card">
                                 <div class="img-wrapper">
-                                    <img src="<%= movie.posterImgPath%>" class="movie-poster" width="200">
+                                    <img src="<%= movie.posterImgPath%>" class="movie-poster" width="200" />
                                 </div>
                                 <h1 class="movie-title">
-                                    <%= movie.title%>
+                                    <%= movie.name%>
                                 </h1>
                                 <p class="movie-rating">rating: 10/10</p>
                             </div>
@@ -29,5 +28,8 @@
                     <%})%>
             </ul>
         </div>
-    </div class="flex-wrap">
+        <div id="pagination-wrap">
+            <%- include('../partials/pagination',{pageRoot:'movie'}) %>
+        </div>
+    </div>
 </div>

@@ -1,23 +1,24 @@
 <link rel="stylesheet" href="/movie.css">
 <div id="container" class="shape-container">
     <div style="background-image: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0, 0) 50%, rgba(0,0,0,0.7) 100%), url('<%= movie.coverImgPath%>')" id="movie-inner-container">
-        <img src="<%= movie.posterImgPath%>" class="inner-poster">
+        <div class="poster-wrap">
+            <img src="<%= movie.posterImgPath%>" class="inner-poster">
+        </div>
         <div class="movie-title-group">
             <h1 class="movie-title">
-                <%= movie.title %>
+                <%= movie.name %>
             </h1>
             <h1>
                 <%= movie.publishDate.toISOString().split('T')[0] %>
             </h1>
         </div>
         <div class="movie-btn-group">
-            <a href="/movie/<%= movie._id %>/edit" class="btn">Edit</a>
-            <%- include('../partials/delete_btn',{url:`/movie/${movie._id}?_method=DELETE`}) %>
+            <a href="/movie/edit/<%= movie._id %>" class="btn">Edit</a>
+            <%- include('../partials/delete_btn',{url:`/movie/edit/${movie._id}?_method=DELETE`}) %>
         </div>
     </div>
     <div style=" clear: both;">
     </div>
-
     <div class="movie-des">
         <section>
             <h1 class="title fix-title">

@@ -47,6 +47,7 @@ label {
 }
 
 .date-filter {
+    -webkit-appearance: none;
     display: inline-block;
     width: 20%;
     margin: 0 1rem;
@@ -84,11 +85,50 @@ label {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 2rem;
+    gap: 3.7%;
 }
 
 .flex-movie-item {
-    width: 15%;
+    width: 17%;
+    margin-bottom: 1.5rem;
+}
+
+
+/* pagination */
+
+#pagination-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.pagination li {
+    border-radius: 4px;
+    padding: 8px 16px;
+    background-color: #181818;
+}
+
+.pagination li:hover {
+    background-color: #cc0400;
+}
+
+.pagination .active {
+    background-color: #16425b;
+}
+
+.pagination .active:hover {
+    background-color: #16425b;
+}
+
+.pagination .active a {
+    color: #f3f4f2;
 }
 
 @media screen and (max-width: 900px) {

@@ -39,12 +39,13 @@
 #studio-movie-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 3.7%;
     width: 100%;
 }
 
 .flex-movie-item {
-    width: 15%;
+    width: 17%;
+    margin-bottom: 1.5rem;
 }
 
 .inline-btn {
@@ -67,6 +68,7 @@
     }
     .flex-movie-item {
         width: 45%;
+        margin-bottom: 1rem;
     }
 }
 

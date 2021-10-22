@@ -5,16 +5,33 @@ const Studio = require('../models/studio');
 
 //get all film studios' s information
 router.get("/", async(req, res) => {
-    let findingObj = {};
-    findingObj.user = req.user._id
-    if (req.query.name) findingObj.name = new RegExp(req.query.name, "i");
-
     try {
-        const allStudio = await Studio.find(findingObj);
-        res.render("./movie_studios/index", {
-            studios: allStudio,
-            searchInput: req.query.name,
-        });
+        let filterObj = {};
+        filterObj.user = req.user._id
+        if (req.query.name) filterObj.tilte = new RegExp(req.query.name, "i");
+        const searchOptions = {
+            name: req.query.name,
+            publishDate: '',
+        };
+
+        renderNumberedPage(res, 5, 1, filterObj, searchOptions);
+    } catch (error) {
+        res.redirect('/studio')
+    }
+});
+
+router.get("/page/:id", async(req, res) => {
+    try {
+        let filterObj = {};
+        filterObj.user = req.user._id
+        if (req.query.name) filterObj.name = new RegExp(req.query.name, "i");
+        const searchOptions = {
+            name: req.query.name,
+            publishDate: '',
+        };
+        const page = req.params.id || 1;
+
+        renderNumberedPage(res, 5, page, filterObj, searchOptions);
     } catch (error) {
         res.status(404).json({
             request: "success",
@@ -44,7 +61,7 @@ router.post("/", async(req, res) => {
     } catch (error) {
         res.status(400).render("./movie_studios/new_studio", {
             studio: studio,
-            err: error.message,
+            err: "Please insert studio name",
         });
     }
 });
@@ -118,4 +135,37 @@ router.delete("/:id", async(req, res) => {
     }
 });
 
+async function renderNumberedPage(
+    res,
+    perPage,
+    page,
+    filterObj,
+    searchOptions
+) {
+    try {
+        const studios = await Studio.find(filterObj)
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec(async function(err, studios) {
+                if (!err) {
+                    const total = await Studio.find(filterObj)
+                        .count()
+                        .exec(async function(err, total) {
+                            res.render("./movie_studios/index", {
+                                studios: studios,
+                                searchOptions: searchOptions,
+                                current: page,
+                                totalPages: Math.ceil(total / perPage),
+                            });
+                        });
+                } else {
+                    res.redirect('/studio')
+                }
+            });
+    } catch (error) {
+        res.status(400).json({
+            err: error.message,
+        });
+    }
+}
 module.exports = router;

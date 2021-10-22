@@ -27,7 +27,7 @@ router.post('/login', async(req, res) => {
                     email: user.email
                 }, process.env.ACCESS_TOKEN_KEY)
 
-                res.cookie('token', accessToken)
+                res.cookie('token', accessToken, { httpOnly: true, secure: true })
                 return res.redirect('/')
             } else {
                 throw new Error('invalid password')
@@ -47,7 +47,6 @@ router.post('/signup', async(req, res) => {
         if (!(req.body.name && req.body.password && req.body.email)) {
             throw new Error("Some thing is not right here")
         } else {
-
             user.name = req.body.name
             user.email = req.body.email
             const salt = await bcrypt.genSalt(10)

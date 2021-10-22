@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="/newMovie.css">
 <div id="container">
-    <form method="POST" action="/movie" id="new-movie-form">
+    <form method="POST" action="/movie/edit/<%= movie._id%>?_method=PUT" id="new-movie-form">
         <div id="flex-wrap">
             <h1 class="title">NEW MOVIE</h1>
             <div id="reverse-wrap">
                 <div class="col-7">
                     <div class="inner-col-7">
                         <div class="form-group">
-                            <label>Movie title</label>
-                            <input class="form-control" type="text" name="title" value="<%= movie.title %>" placeholder="Movie Title">
+                            <label>Movie name</label>
+                            <input class="form-control" type="text" name="name" value="<%= movie.name %>" placeholder="Movie Name">
                         </div>
                         <div class="form-group inner-col">
                             <label>Studio</label>

@@ -18,11 +18,10 @@
                 <textarea class="form-control" name="detail" rows="9" placeholder="studio history"><%= studio.detail%></textarea>
             </div>
             <div class="form-group">
-                <a href="/studio" class="form-btn">Cancle</a>
-                <button type="submit" formmethod="post" class="form-btn">Create</button>
+                <%- include('../partials/error_alert.ejs') %>
+                    <a href="/studio" class="form-btn">Cancle</a>
+                    <button type="submit" formmethod="post" class="form-btn">Create</button>
             </div>
         </div>
-
-        <%- include('../partials/error_alert.ejs') %>
     </form>
 </div>

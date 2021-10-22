@@ -19,10 +19,18 @@
     display: block;
 }
 
-.inner-poster {
+.poster-wrap {
     float: left;
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 15%;
+    width: 20%;
+    aspect-ratio: 233 / 350;
+}
+
+.inner-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .movie-title-group {
@@ -141,11 +149,13 @@
         background-position: center;
         height: auto;
     }
-    .inner-poster {
-        margin-top: 50px;
-        height: 250px;
+    .poster-wrap {
         float: none;
-        margin-left: unset;
+        width: 80%;
+        display: inline-block;
+        margin-top: 15%;
+        margin-right: auto;
+        margin-left: auto;
     }
     .movie-title-group {
         position: unset;

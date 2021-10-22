@@ -1,0 +1,13 @@
+<% if(locals.searchOptions.name|| locals.searchOptions.publishDate){ %>
+    <li>
+        <a href="/<%= root%>/page/<%= pageNum%>?name=<%= locals.searchOptions.name%>&&publishDate=<%= locals.searchOptions.publishDate%>">
+            <%= pageText%>
+        </a>
+    </li>
+    <% } else {%>
+        <li>
+            <a href="/<%= root%>/page/<%= pageNum%>">
+                <%= pageText%>
+            </a>
+        </li>
+        <% } %>
