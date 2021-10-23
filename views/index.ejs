@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="/css/index.css">
 <div id="grid-container">
     <section class="grid-item">
         <h1 class="title">RECENTLY ADDED</h1>
@@ -12,9 +12,11 @@
                                     <img class="movie-poster" src="<%= movie.posterImgPath%>">
                                 </div>
                                 <h1 class="movie-title">
-                                    <%= movie.title%>
+                                    <%= movie.name%>
                                 </h1>
-                                <p class="movie-rating">rating: 10/10</p>
+                                <p class="create-date">
+                                    <%= movie.createDate.toISOString().split('T')[0]%>
+                                </p>
                             </div>
                         </a>
                     </li>
@@ -23,10 +25,10 @@
         </div>
     </section>
     <section class="grid-item">
-        <h1 class="title">ALL MOVIE</h1>
+        <h1 class="title">RANDOM MOVIE</h1>
         <div class="my-carousel">
             <ul class="movie-list">
-                <% movies.forEach(movie => {%>
+                <% randomMovies.forEach(movie => {%>
                     <li>
                         <a href="/movie/<%= movie._id%>">
                             <div class="movie-card">
@@ -34,9 +36,11 @@
                                     <img class="movie-poster" src="<%= movie.posterImgPath%>">
                                 </div>
                                 <h1 class="movie-title">
-                                    <%= movie.title%>
+                                    <%= movie.name%>
                                 </h1>
-                                <p class="movie-rating">rating: 10/10</p>
+                                <p class="create-date">
+                                    <%= movie.createDate.toISOString().split('T')[0]%>
+                                </p>
                             </div>
                         </a>
                     </li>

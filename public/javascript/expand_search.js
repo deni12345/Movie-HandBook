@@ -13,8 +13,7 @@ document.querySelector('#btn-search').addEventListener('click', (e) => {
 document.querySelector('#btn-search').addEventListener('click', (e) => {
     const inputSearch = document.getElementById("input-search-text");
     const searchMovie = document.getElementById("form-search");
-    if (inputSearch.value != '') {
-        console.log(searchMovie)
+    if (inputSearch.offsetWidth >= 350) {
         searchMovie.submit()
     }
 })

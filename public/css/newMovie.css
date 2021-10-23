@@ -130,6 +130,23 @@ select.form-control {
     cursor: pointer;
 }
 
+@media screen and (max-width: 700px) {
+    #reverse-wrap {
+        flex-direction: column-reverse;
+    }
+    .col-7 {
+        flex-grow: 1;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .col-5 {
+        width: 100%;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }

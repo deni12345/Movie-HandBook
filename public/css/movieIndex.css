@@ -49,7 +49,7 @@ label {
 .date-filter {
     -webkit-appearance: none;
     display: inline-block;
-    width: 20%;
+    width: auto;
     margin: 0 1rem;
 }
 

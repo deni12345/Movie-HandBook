@@ -44,15 +44,22 @@ router.post('/login', async(req, res) => {
 router.post('/signup', async(req, res) => {
     try {
         const user = new User()
-        if (!(req.body.name && req.body.password && req.body.email)) {
-            throw new Error("Some thing is not right here")
+        if (!(req.body.name && req.body.email)) {
+            throw new Error("Wrong input in name or email fields")
+        } else if (!(req.body.password.length === 6)) {
+            throw new Error("Password must have 6 characters")
         } else {
             user.name = req.body.name
             user.email = req.body.email
             const salt = await bcrypt.genSalt(10)
             user.password = await bcrypt.hash(req.body.password, salt)
-            user.save()
-            return res.redirect('/user/login')
+            user.save(function(err) {
+                if (err) {
+                    renderLoginPage(res, 'register-form', './user/login', new Error('User name is already existed'))
+                } else {
+                    return res.redirect('/user/login')
+                }
+            })
         }
     } catch (error) {
         renderLoginPage(res, 'register-form', './user/login', error)

@@ -13,6 +13,7 @@ const movieRouter = require('./routes/movies')
 const userRouter = require('./routes/user')
 const { authenticateToken } = require('./middleware/authenMiddleware')
 
+https.createServer()
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
