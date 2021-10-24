@@ -9,3 +9,6 @@
   <li>I've also used ejs and nodejs to make a severside pagination too</li>
 </ul>
 
+![image](https://user-images.githubusercontent.com/31760814/138594707-a70b23c1-cebc-43d1-8b93-29b316de341f.png)
+![image](https://user-images.githubusercontent.com/31760814/138594717-08e4495f-3294-40c7-a38f-aaad88792268.png)
+
