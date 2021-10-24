@@ -9,7 +9,10 @@ router.get("/", authenticateToken, async(req, res) => {
     try {
         movies = await Movie.find().sort({ createDate: "desc" }).limit(10).exec();
         let total = await Movie.count();
-        let randomNum = Math.floor(Math.random() * (total + 1));
+        let randomNum =
+            total > 10 ?
+            Math.floor(Math.random() * (total - 10)) :
+            Math.floor(Math.random() * total);
         randomMovies = await Movie.find().skip(randomNum).limit(10);
     } catch (error) {
         movies = [];

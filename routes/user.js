@@ -1,81 +1,87 @@
-const express = require('express')
-const router = express.Router()
-const User = require('../models/user')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const express = require("express");
+const router = express.Router();
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //get account info
-router.get('/login', (req, res) => {
-    renderLoginPage(res, 'login-form', './user/login')
-})
+router.get("/login", (req, res) => {
+    renderLoginPage(res, "login-form", "./user/login");
+});
 
 //get logout
-router.get('/logout', (req, res) => {
-    res.cookie('token', '', { maxAge: 1 })
-    res.redirect('/')
-})
+router.get("/logout", (req, res) => {
+    res.cookie("token", "", { maxAge: 1 });
+    res.redirect("/");
+});
 
-router.post('/login', async(req, res) => {
+router.post("/login", async(req, res) => {
     try {
-        const user = await User.findOne({ name: req.body.name })
+        const user = await User.findOne({ name: req.body.name });
         if (user) {
-            const check = await bcrypt.compare(req.body.password, user.password)
+            const check = await bcrypt.compare(req.body.password, user.password);
             if (check) {
                 const accessToken = jwt.sign({
-                    _id: user._id,
-                    name: user.name,
-                    email: user.email
-                }, process.env.ACCESS_TOKEN_KEY)
+                        _id: user._id,
+                        name: user.name,
+                        email: user.email,
+                    },
+                    process.env.ACCESS_TOKEN_KEY
+                );
 
-                res.cookie('token', accessToken, { httpOnly: true, secure: true })
-                return res.redirect('/')
+                res.cookie("token", accessToken, { httpOnly: true, secure: true });
+                return res.redirect("/");
             } else {
-                throw new Error('invalid password')
+                throw new Error("invalid password");
             }
         } else {
-            throw new Error('invalid account')
+            throw new Error("invalid account");
         }
     } catch (error) {
-        renderLoginPage(res, 'login-form', './user/login', error)
+        renderLoginPage(res, "login-form", "./user/login", error);
     }
-})
+});
 
 //sign up account
-router.post('/signup', async(req, res) => {
+router.post("/signup", async(req, res) => {
     try {
-        const user = new User()
+        const user = new User();
         if (!(req.body.name && req.body.email)) {
-            throw new Error("Wrong input in name or email fields")
+            throw new Error("Wrong input in name or email fields");
         } else if (!(req.body.password.length === 6)) {
-            throw new Error("Password must have 6 characters")
+            throw new Error("Password must have 6 characters");
         } else {
-            user.name = req.body.name
-            user.email = req.body.email
-            const salt = await bcrypt.genSalt(10)
-            user.password = await bcrypt.hash(req.body.password, salt)
+            user.name = req.body.name;
+            user.email = req.body.email;
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(req.body.password, salt);
             user.save(function(err) {
                 if (err) {
-                    renderLoginPage(res, 'register-form', './user/login', new Error('User name is already existed'))
+                    renderLoginPage(
+                        res,
+                        "register-form",
+                        "./user/login",
+                        new Error("User name is already existed")
+                    );
                 } else {
-                    return res.redirect('/user/login')
+                    return res.redirect("/user/login");
                 }
-            })
+            });
         }
     } catch (error) {
-        renderLoginPage(res, 'register-form', './user/login', error)
+        renderLoginPage(res, "register-form", "./user/login", error);
     }
-})
+});
 
 function renderLoginPage(res, formName, path, error = null) {
     let formObj = {
         formActive: formName,
-        layout: false
-    }
+        layout: false,
+    };
     if (error) {
         formObj.err = error.message;
     }
-    res.render(path, formObj)
+    res.render(path, formObj);
 }
 
-
-module.exports = router
+module.exports = router;

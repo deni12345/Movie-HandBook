@@ -17,14 +17,13 @@ router.get("/", async(req, res) => {
             filterObj.publishDate = { $lte: req.query.publishDate };
         }
         const searchOptions = {
-            name: req.query.name
+            name: req.query.name,
         };
 
         renderNumberedPage(res, 15, 1, filterObj, searchOptions);
     } catch (error) {
-        res.redirect('/movie')
+        res.redirect("/movie");
     }
-
 });
 
 //get a specified movie page
@@ -39,12 +38,12 @@ router.get("/page/:id", async(req, res) => {
             filterObj.publishDate = { $lte: req.query.publishDate };
         }
         const searchOptions = {
-            name: req.query.name
+            name: req.query.name,
         };
         const page = req.params.id || 1;
         renderNumberedPage(res, 15, page, filterObj, searchOptions);
     } catch (error) {
-        res.redirect('/movie')
+        res.redirect("/movie");
     }
 });
 
@@ -79,7 +78,7 @@ router.post("/new", async(req, res) => {
     }
 });
 
-//get detail vie of a movie
+//get detail of a movie
 router.get("/:id", async(req, res) => {
     try {
         const movie = await Movie.findOne({
@@ -96,7 +95,7 @@ router.get("/:id", async(req, res) => {
     }
 });
 
-//get edit movie view
+//get edit movie page
 router.get("/edit/:id/", async(req, res) => {
     try {
         const movie = await Movie.findOne({
@@ -185,7 +184,7 @@ async function renderNumberedPage(
                             });
                         });
                 } else {
-                    res.redirect('/movie')
+                    res.redirect("/movie");
                 }
             });
     } catch (error) {

@@ -1,33 +1,33 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Movie = require('../models/movie')
-const Studio = require('../models/studio');
+const Movie = require("../models/movie");
+const Studio = require("../models/studio");
 
 //get all film studios' s information
 router.get("/", async(req, res) => {
     try {
         let filterObj = {};
-        filterObj.user = req.user._id
+        filterObj.user = req.user._id;
         if (req.query.name) filterObj.tilte = new RegExp(req.query.name, "i");
         const searchOptions = {
             name: req.query.name,
-            publishDate: '',
+            publishDate: "",
         };
 
         renderNumberedPage(res, 5, 1, filterObj, searchOptions);
     } catch (error) {
-        res.redirect('/studio')
+        res.redirect("/studio");
     }
 });
 
 router.get("/page/:id", async(req, res) => {
     try {
         let filterObj = {};
-        filterObj.user = req.user._id
+        filterObj.user = req.user._id;
         if (req.query.name) filterObj.name = new RegExp(req.query.name, "i");
         const searchOptions = {
             name: req.query.name,
-            publishDate: '',
+            publishDate: "",
         };
         const page = req.params.id || 1;
 
@@ -53,7 +53,7 @@ router.post("/", async(req, res) => {
         name: req.body.name.trim(),
         founded: req.body.founded,
         detail: req.body.detail,
-        user: req.user._id
+        user: req.user._id,
     });
     try {
         await studio.save();
@@ -69,44 +69,58 @@ router.post("/", async(req, res) => {
 //get a specific studio
 router.get("/:id", async(req, res) => {
     try {
-        const movies = await Movie.find({ studio: req.params.id, user: req.user._id }).limit(8).exec()
-        const studio = await Studio.findOne({ _id: req.params.id, user: req.user._id })
-        res.render('./movie_studios/display_studio', {
+        const movies = await Movie.find({
+                studio: req.params.id,
+                user: req.user._id,
+            })
+            .limit(8)
+            .exec();
+        const studio = await Studio.findOne({
+            _id: req.params.id,
+            user: req.user._id,
+        });
+        res.render("./movie_studios/display_studio", {
             studio: studio,
-            movies: movies
-        })
-
+            movies: movies,
+        });
     } catch (error) {
-        res.redirect('/studio')
+        res.redirect("/studio");
     }
 });
 
 //get edit studio view
 router.get("/:id/edit", async(req, res) => {
     try {
-        const studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
+        const studio = await Studio.findOne({
+            _id: req.params.id,
+            user: req.user._id,
+        });
         if (studio) {
             res.render("./movie_studios/edit_studio", {
-                studio: studio
+                studio: studio,
             });
         } else {
-            return res.redirect('/studio')
+            return res.redirect("/studio");
         }
     } catch (error) {
-        res.redirect(`/studio/${req.params.id}`)
+        res.redirect(`/studio/${req.params.id}`);
     }
 });
 
 //update a specific studio
 router.put("/:id", async(req, res) => {
-    let studio
+    let studio;
     try {
         studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
-        studio.name = req.body.name.trim() != '' ? req.body.name : studio.name;
-        studio.founded = req.body.founded.trim() != '' ? new Date(req.body.founded) : studio.founded;
-        studio.detail = req.body.detail.trim() != '' ? req.body.detail : studio.detail;
-        await studio.save()
-        res.redirect(`/studio/${studio._id}`)
+        studio.name = req.body.name.trim() != "" ? req.body.name : studio.name;
+        studio.founded =
+            req.body.founded.trim() != "" ?
+            new Date(req.body.founded) :
+            studio.founded;
+        studio.detail =
+            req.body.detail.trim() != "" ? req.body.detail : studio.detail;
+        await studio.save();
+        res.redirect(`/studio/${studio._id}`);
     } catch (error) {
         if (studio) {
             res.status(400).render("./movie_studios/edit_studio", {
@@ -114,23 +128,23 @@ router.put("/:id", async(req, res) => {
                 err: error.message,
             });
         } else {
-            res.redirect('/studio')
+            res.redirect("/studio");
         }
     }
 });
 
 //delete a sudio
 router.delete("/:id", async(req, res) => {
-    let studio
+    let studio;
     try {
         studio = await Studio.findOne({ _id: req.params.id, user: req.user._id });
-        await studio.remove()
-        res.redirect('/studio');
+        await studio.remove();
+        res.redirect("/studio");
     } catch (error) {
         if (studio) {
-            res.redirect(`/studio/${studio._id}`)
+            res.redirect(`/studio/${studio._id}`);
         } else {
-            res.redirect('/studio')
+            res.redirect("/studio");
         }
     }
 });
@@ -159,7 +173,7 @@ async function renderNumberedPage(
                             });
                         });
                 } else {
-                    res.redirect('/studio')
+                    res.redirect("/studio");
                 }
             });
     } catch (error) {
